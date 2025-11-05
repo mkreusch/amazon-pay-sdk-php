@@ -23,7 +23,7 @@ use Psr\Log\LoggerInterface;
 
 class Client implements ClientInterface, LoggerAwareInterface
 {
-    const SDK_VERSION = '3.7.1';
+    const SDK_VERSION = '3.7.99';
     const MWS_VERSION = '2013-01-01';
     const MAX_ERROR_RETRY = 3;
 
@@ -63,7 +63,7 @@ class Client implements ClientInterface, LoggerAwareInterface
     private $regionMappings;
 
     // Implement a logging library that utilizes the PSR 3 logger interface
-    private $logger = null;
+    private $logger;
 
     // Boolean variable to check if the API call was a success
     public $success = false;
@@ -101,14 +101,14 @@ class Client implements ClientInterface, LoggerAwareInterface
     }
 
 
-    public function setLogger(LoggerInterface $logger = null) {
+    public function setLogger(LoggerInterface $logger) {
         $this->logger = $logger;
     }
     
 
     /* Helper function to log data within the Client */
     private function logMessage($message) {
-        if ($this->logger) {
+        if (isset($this->logger)) {
             $this->logger->debug($message);
         }
     }
