@@ -8,16 +8,8 @@ namespace AmazonPay;
 
 require_once 'HttpCurl.php';
 require_once 'IpnHandlerInterface.php';
-if (!interface_exists('\Psr\Log\LoggerAwareInterface')) {
-    require_once(__DIR__.'/../Psr/Log/LoggerAwareInterface.php');
-}
-if (!interface_exists('\Psr\Log\LoggerInterface')) {
-    require_once(__DIR__.'/../Psr/Log/LoggerInterface.php');
-}
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface;
 
-class IpnHandler implements IpnHandlerInterface, LoggerAwareInterface
+class IpnHandler implements IpnHandlerInterface
 {
 
     private $headers = null;
@@ -28,9 +20,6 @@ class IpnHandler implements IpnHandlerInterface, LoggerAwareInterface
     private $certificate = null;
     private $expectedCnName = 'sns.amazonaws.com';
     private $defaultHostPattern = '/^sns\.[a-zA-Z0-9\-]{3,}\.amazonaws\.com(\.cn)?$/';
-
-    // Implement a logging library that utilizes the PSR 3 logger interface
-    private $logger = null;
 
     private $ipnConfig = array('cabundle_file'  => null,
                    'proxy_host'     => null,
@@ -85,17 +74,10 @@ class IpnHandler implements IpnHandlerInterface, LoggerAwareInterface
             }
         }
     }
-
-    public function setLogger(LoggerInterface $logger = null) {
-        $this->logger = $logger;
-    }
-    
     /* Helper function to log data within the Client */
 
     private function logMessage($message) {
-        if ($this->logger) {
-            $this->logger->debug($message);
-        }
+        // do nothing for now
     }
 
     /* Setter function
