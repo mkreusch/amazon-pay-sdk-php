@@ -1,8 +1,8 @@
 {
-   "name": "amzn/amazon-pay-sdk-php",
+   "name": "mkreusch/amazon-pay-sdk-php",
    "type": "library",
    "description": "Amazon Pay SDK (PHP)",
-   "version": "3.7.1",
+   "version": "3.7.99",
    "keywords": [
       "amazon",
       "pay",
@@ -18,6 +18,10 @@
       {
          "name": "Amazon Pay SDK",
          "email": "amazon-pay-sdk@amazon.com"
+      },
+      {
+         "name": "Marcus Kreusch",
+         "email": "info@onlineshop.consulting"
       }
    ],
    "autoload": {
